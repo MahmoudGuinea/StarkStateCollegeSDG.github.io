@@ -43,7 +43,7 @@ function NavData(){
 		console.log(item.name);
 		console.log(item.link);
 		console.log("nav-"+item.name);
-	})
+	});
 }
 
 /*
