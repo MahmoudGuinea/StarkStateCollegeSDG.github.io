@@ -1,74 +1,23 @@
 /*
-*eventData is the driving funcion for EventInfo
+*NavData gets json object through jquery
 */
 function NavData(){
-	/*
-	*calls the HTTP request for the jason file
-	*sends a function as the callback argument
-	*/
-	loadJSON(function(response) {
-  	/*
-  	*parse JSON string into object
-    */
-    var actual_JSON = JSON.parse(response);
-    var data =getJSON();
-
-//used for debug ... outputs event data objects to the console log 
- 	//actual_JSON.events.forEach(function(element)
-	//{
-	//	console.log(element);
-	//});
-
-	/*
-	*for each loop to step through every object with in the first key value of "events"
-	*in the json file "events" is an array housing multiple objects containing keys with values
-	*item.x searches the current object within the elements arry for what ever key value x is
-		if x was name it would search for the key name.
-	*the key is found item.x returns the value of the key  
-	*/
-	actual_JSON.elements.forEach(function(item)
-	{
-		var name = item.name;
-		var link = item.link;
-		//regular expression give the id a shorter name
-		var re = new RegExp('[A-Za-z]*');
-		var newName = re.exec(name);
-		var id = "nav-" + newName;
-
-		printNav(name, id, link);
-	});
-	});
-
-	data.elements.forEach(funcion(item){
-		console.log(item.name);
-		console.log(item.link);
-		console.log("nav-"+item.name);
-	});
-}
-
-/*
-*creates a new HTTP request for the json file to be parsed
-*/
-function loadJSON(callback) {   
-var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-xobj.open('GET', 'json/navigation.json', true);
-xobj.onreadystatechange = function () {
-      if (xobj.readyState == 4 && xobj.status == "200") {
-        callback(xobj.responseText);
-      }
-};
-xobj.send(null);  
-}
-
-//wip use jquery to get json
-function getJSON(){
-	var dataObject;
+	//jquery get json function
+	//innser function gets elements array of objects within the json
+	//then for each object it gets a name and link variable
+	//uses these variables in the print data function
 	$.getJSON('json/navigation.json', function(data){
-		dataObject = data;
+		 $(data.elements).each(function(index, value){
+		 	console.log(value);
+
+		 	var name = value.name;
+		 	var id = value.name;
+		 	var link = value.link;
+
+		 	printNav(name, id, link);
+		 });
 	});
-	// console.log(dataObject);
-	return dataObject;
+
 }
 
 /*
