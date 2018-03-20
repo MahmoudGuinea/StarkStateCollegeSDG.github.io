@@ -11,7 +11,7 @@ function NavData(){
   	*parse JSON string into object
     */
     var actual_JSON = JSON.parse(response);
-    getJSON();
+    var data =getJSON();
 
 //used for debug ... outputs event data objects to the console log 
  	//actual_JSON.events.forEach(function(element)
@@ -38,6 +38,12 @@ function NavData(){
 		printNav(name, id, link);
 	});
 	});
+
+	data.elements.forEach(funcion(item){
+		console.log(item.name);
+		console.log(item.link);
+		console.log("nav-"+item.name);
+	})
 }
 
 /*
@@ -61,7 +67,8 @@ function getJSON(){
 	$.getJSON('json/navigation.json', function(data){
 		dataObject = data;
 	});
-	console.log(dataObject);
+	// console.log(dataObject);
+	return dataObject;
 }
 
 /*
