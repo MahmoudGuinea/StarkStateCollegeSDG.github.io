@@ -1,4 +1,4 @@
-##SDG Static Test Site
+## SDG Static Test Site
 * use this process to get a branch from the working repo then merge with master and test
 
 > 1. git checkout --orphan \<branchName\>
